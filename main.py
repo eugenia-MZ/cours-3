@@ -1,3 +1,5 @@
+import random  # module pour générer des nombres aléatoires
+
 """
 -----Ex 1-----
 
@@ -81,6 +83,9 @@ print("{:<10} {:<5} {:<6.2f}".format(name, age, height))
 # Print all formatted strings
 """
 
+
+"""
+-----Ex 3-----
 # TODO: Create a list of numbers
 numbers = [24, 52, 37.8, 4]
 
@@ -100,7 +105,98 @@ dictionary = {
 }
 
 # TODO: Use a for loop with range() to print numbers from 1 to 10
+for i in range(1, 11):
+    print(i)
 
 # TODO: Use list comprehension to create a new list of squares of numbers
+squares = [i**2 for i in numbers]
+print(squares)
 
 # TODO: Use a nested for loop to create a multiplication table (up to 5x5)
+facteurs = [0, 1, 2, 3, 4, 5]
+print("-----")
+for i in facteurs:
+    for j in facteurs:
+        print(f"résultat de {i} x {j} : {i*j}")
+"""
+
+"""
+# TODO: Use a while loop to print numbers from 1 to 10
+
+i = 1
+while i <= 10:
+    print(i)
+    i = i+1
+
+# TODO: Create a guessing game using a while loop
+# (generate a random number and let the user guess until correct)
+
+
+# le programme choisit un nombre aléatoire entre 1 et 10
+nombre_secret = random.randint(1, 10)
+jeu = 0
+
+while jeu != nombre_secret:
+    jeu = int(input("Entrez un nombre entre un 1 et 10 : "))
+    if jeu == nombre_secret:
+        print("Bien joué tu as trouvé le nombre !")
+    elif jeu < 1 or jeu > 10:
+        print("j'ai dit entre 1 et 10 !")
+    else:
+        print("Raté, essaye encore")
+
+# TODO: Use a while loop to calculate the factorial of a number
+num = int(input("Entrez un nombre pour calculer sa factorielle : "))
+fact = 1
+f = 1
+
+while f <= num:
+    fact = fact * f
+    f = f+1
+
+print(f"la factorielle de {num} est : {fact}")
+"""
+
+# TODO: Implement a simple calculator using a while loop
+# (continue calculating until the user chooses to exit)
+
+is_finished = False
+
+while is_finished is not True:
+    nb1 = int(input("Entrez un 1er nombre : "))
+    nb2 = int(input("Entrez un 2e nombre : "))
+    operator = input("Choisissez une opération entre +, -, *, / : ")
+
+    if operator == "+":
+        print(f"{nb1} + {nb2} = {nb1+nb2}")
+
+    elif operator == "-":
+        print(f"{nb1} - {nb2} = {nb1-nb2}")
+
+    elif operator == "*":
+        print(f"{nb1} x {nb2} = {nb1*nb2}")
+
+    elif operator == "/":
+        if nb2 != 0:
+            print(f"{nb1} / {nb2} = {nb1/nb2}")
+        else:
+            print(f"La division par {nb2} est impossible")
+            is_finished = True
+    
+    else:
+        print("Choisissez un opérateur valide !")
+        operator = input("Choisissez une opération entre +, -, *, / : ")
+
+    retry = input("Souhaitez-vous refaire une nouvelle opération ? (y/n)")
+    
+    if retry == "y":
+        nb1 = int(input("Entrez un 1er nombre : "))
+        nb2 = int(input("Entrez un 2e nombre : "))
+        operator = input("Choisissez une opération entre +, -, *, / : ")
+    
+    elif retry == "n":
+        is_finished = True
+
+    else:
+        print("Choisissez une réponse entre 'y' et 'n'")
+        retry = input("Souhaitez-vous refaire une nouvelle opération ? (y/n)")
