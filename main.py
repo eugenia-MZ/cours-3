@@ -1,5 +1,5 @@
 import random  # module pour générer des nombres aléatoires
-
+import string
 """
 -----Ex 1-----
 
@@ -104,6 +104,9 @@ dictionary = {
     "height": 1.70,
 }
 
+for key, value in dictionary.items():
+    print(f"dictionary[{key}]c = {value}")
+
 # TODO: Use a for loop with range() to print numbers from 1 to 10
 for i in range(1, 11):
     print(i)
@@ -157,46 +160,105 @@ while f <= num:
 print(f"la factorielle de {num} est : {fact}")
 """
 
+
+"""
+-----Ex 4-----
 # TODO: Implement a simple calculator using a while loop
 # (continue calculating until the user chooses to exit)
 
 is_finished = False
+new_op = "y"
 
 while is_finished is not True:
-    nb1 = int(input("Entrez un 1er nombre : "))
-    nb2 = int(input("Entrez un 2e nombre : "))
-    operator = input("Choisissez une opération entre +, -, *, / : ")
+    while new_op == "y":
+        good_numbers = True
+        good_operator = True
 
-    if operator == "+":
-        print(f"{nb1} + {nb2} = {nb1+nb2}")
-
-    elif operator == "-":
-        print(f"{nb1} - {nb2} = {nb1-nb2}")
-
-    elif operator == "*":
-        print(f"{nb1} x {nb2} = {nb1*nb2}")
-
-    elif operator == "/":
-        if nb2 != 0:
-            print(f"{nb1} / {nb2} = {nb1/nb2}")
-        else:
-            print(f"La division par {nb2} est impossible")
-            is_finished = True
-    
-    else:
-        print("Choisissez un opérateur valide !")
-        operator = input("Choisissez une opération entre +, -, *, / : ")
-
-    retry = input("Souhaitez-vous refaire une nouvelle opération ? (y/n)")
-    
-    if retry == "y":
         nb1 = int(input("Entrez un 1er nombre : "))
         nb2 = int(input("Entrez un 2e nombre : "))
-        operator = input("Choisissez une opération entre +, -, *, / : ")
-    
-    elif retry == "n":
-        is_finished = True
+        operator = input("Choisissez une opération entre +, -, *, / : ")     
 
-    else:
-        print("Choisissez une réponse entre 'y' et 'n'")
-        retry = input("Souhaitez-vous refaire une nouvelle opération ? (y/n)")
+        if operator != "+" and operator != "-" and operator != "*" and operator != "/":
+            good_operator = False
+
+        while good_operator is False:
+            print("Choisissez un opérateur valide !")
+            operator = input("Choisissez une opération entre +, -, *, / : ")
+            if operator == "+" or operator == "-" or operator == "*" or operator == "/":
+                good_operator = True
+
+        if operator == "+":
+            print(f"{nb1} + {nb2} = {nb1+nb2}")
+
+        elif operator == "-":
+            print(f"{nb1} - {nb2} = {nb1-nb2}")
+
+        elif operator == "*":        
+            print(f"{nb1} x {nb2} = {nb1*nb2}")
+
+        elif operator == "/":
+            if nb2 != 0:
+                print(f"{nb1} / {nb2} = {nb1/nb2}")
+            else:
+                print(f"La division par {nb2} est impossible")
+                is_finished = True
+
+        new_op = input("Souhaitez-vous refaire une nouvelle opération ? (y/n)" )
+            
+        if new_op == "n":
+            is_finished = True
+
+        while new_op != "y" and new_op != "n":
+            print("Choisissez une réponse entre 'y' et 'n'")
+            new_op = input("Souhaitez-vous refaire une nouvelle opération ? (y/n)")
+"""
+
+"""        
+# TODO: Create a function that counts the occurrence of each vowel in a string
+
+sentence = "je fais un master"
+
+
+def count_vowel(sentence):
+    vowel = "aeiouyAEIOUY"
+    i = 0
+    nb_vowel = 0
+    for i in sentence:
+        if i in vowel:
+            nb_vowel += 1
+        
+    return nb_vowel
+
+
+test = "je suis la"
+print(count_vowel(test))
+
+# TODO: Implement a simple Caesar cipher (shift each letter by a fixed amount)
+all_letters = string.ascii_lowercase + string.ascii_uppercase
+# print(type(letters))
+
+letter = input("Entrez une lettre : ")
+decalage = int(input("Entrez un nombre de décalage : "))
+start_index = all_letters.index(letter)
+letters_decalage = all_letters[start_index:] + all_letters[:start_index]
+
+
+def caesar_cipher(letter, decalage):
+    
+    j = 0
+    for j in letter:
+        resultat = ""
+        index = all_letters.index(j)  
+        new_index = (index + decalage) % len(all_letters)
+        resultat += letters_decalage[new_index]
+
+    return resultat
+
+caesar_cipher()
+
+# TODO: Create a function that generates the NATO phonetic alphabet representation of a word
+
+# TODO: Implement a function that checks if a string is a palindrome
+
+# Test each function with sample inputs and print the results
+"""
